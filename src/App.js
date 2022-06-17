@@ -35,11 +35,11 @@ const App = () => {
           count % 2 === 1 ? "primary" : "danger"
         } py-3 px-5`}
       >
-        {count}
+        {count === 10 ? 'Stoped' : count}
       </button>
 
         {
-          data.length === 0 ?null :
+          data.length === 0 ? null :
           <div className="container p-5 mt-5">
         <table className="table">
           <thead>
@@ -65,16 +65,16 @@ const App = () => {
           </tbody>
         </table>
        
-       <div className="d-flex justify-content-between">
+       <div className="d-flex justify-content-between mt-5">
        <button onClick={()=>{
-      
-          setLimitEnd(limitEnd + 10)
+        {limitEnd >= data.length ? setLimitEnd(data.length): setLimitEnd(limitEnd + 10)}
+         
         }} className="btn btn-dark ">Load More</button>
 
          <button onClick={()=>{
            {limitEnd <= 20 ? setLimitEnd(20) :  setLimitEnd(limitEnd - 10)}
           
-        }} className="btn btn-dark ">Show Less</button>
+        }} className={`btn btn-danger ${limitEnd <= 20 ? 'd-none' : 'd-block'}`}   >Show Less</button>
        </div>
       </div>
         }
